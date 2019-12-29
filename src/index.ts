@@ -39,6 +39,10 @@ import { createAccessToken, createRefreshToken } from "./auth";
             return res.send({ ok: false, accessToken: '' })
         }
 
+        if (user.refreshTokenVersion !== payload.refreshTokenVersion) {
+            return res.send({ ok: false, accessToken: '' })
+        }
+
         res.cookie('jid', createRefreshToken(user), {
             httpOnly: true
         })
