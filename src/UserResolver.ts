@@ -51,7 +51,9 @@ export class UserResolver {
             throw new Error('Bad password')
         }
 
-        res.cookie('jid', createRefreshToken(user))
+        res.cookie('jid', createRefreshToken(user), {
+            httpOnly: true
+        })
 
 
         // successful login
