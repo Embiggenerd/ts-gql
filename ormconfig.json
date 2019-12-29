@@ -6,7 +6,10 @@
    "password": "gql",
    "database": "jwt-auth-example",
    "synchronize": true,
-   "logging": false,
+   "logging": {
+      "logQueries": true,
+      "logFailedQueryError": true
+   },
    "entities": [
       "src/entity/**/*.ts"
    ],

@@ -13,9 +13,7 @@ import { createConnection } from "typeorm";
     app.get('/', (_, res) => {
         return res.send('herro')
     })
-    
-    await createConnection
-
+    await createConnection().then(() => console.log('typeorm connected to db'))
     const apolloServer = new ApolloServer({
         schema: await buildSchema(
             {
