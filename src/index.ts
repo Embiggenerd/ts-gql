@@ -3,6 +3,9 @@ import "reflect-metadata";
 // import { User } from "./entity/User";
 import express from "express";
 import { ApolloServer } from 'apollo-server-express'
+import { buildSchema } from 'type-graphql'
+import { UserResolver } from "./UserResolver";
+import { createConnection } from "typeorm";
 
 
 (async () => {
@@ -10,22 +13,17 @@ import { ApolloServer } from 'apollo-server-express'
     app.get('/', (_, res) => {
         return res.send('herro')
     })
+    
+    await createConnection
 
     const apolloServer = new ApolloServer({
-        typeDefs: `
-        type Query{
-            hello: String!
-        }
-        `,
-        resolvers: {
-            Query: {
-                hello: () => "hello world"
-            }
-        }
+        schema: await buildSchema(
+            {
+                resolvers: [UserResolver]
+            })
     })
 
     apolloServer.applyMiddleware({ app })
-    
     app.listen(4000, () => {
         console.log('express started on 4000')
     })
