@@ -1,6 +1,5 @@
 import "reflect-metadata";
-// import { createConnection } from "typeorm";
-// import { User } from "./entity/User";
+import 'dotenv/config'
 import express from "express";
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
