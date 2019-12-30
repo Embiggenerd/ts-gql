@@ -9,13 +9,21 @@ import cookieParser from 'cookie-parser'
 import { verify } from "jsonwebtoken";
 import { User } from "./entity/User";
 import { createAccessToken, createRefreshToken } from "./auth";
+import cors from 'cors'
 
 (async () => {
     const app = express();
+    app.use(cors({
+        origin: 'http://localhost:3000',
+        credentials: true
+    }))
+
     app.use(cookieParser())
+
     app.get('/', (_, res) => {
         return res.send('err')
     })
+    
     app.post('/refresh_token', async (req, res) => {
         const token = req.cookies.jid
         if (!token) {
@@ -59,7 +67,8 @@ import { createAccessToken, createRefreshToken } from "./auth";
         context: ({ req, res }) => ({ req, res })
     })
 
-    apolloServer.applyMiddleware({ app })
+    apolloServer.applyMiddleware({ app, cors: false })
+
     app.listen(4000, () => {
         console.log('express started on 4000')
     })
