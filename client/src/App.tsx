@@ -4,6 +4,7 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Bye } from './pages/Bye';
+import { setAccessToken } from './accessToken';
 
 export const Routes: React.FC = () => {
 
@@ -15,7 +16,8 @@ export const Routes: React.FC = () => {
       credentials: 'include'
     }).then((x) => {
       x.json().then(json => {
-        console.log(json)
+        const { accessToken } = json
+        setAccessToken(accessToken)
         setLoading(false)
       })
     })
