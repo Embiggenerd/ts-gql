@@ -1,6 +1,8 @@
-export let accessToken = ''
+type Token = string | null
 
-export const setAccessToken = (token: string) => {
+export let accessToken: Token = null
+
+export const setAccessToken = (token: Token) => {
     accessToken = token
 }
 
