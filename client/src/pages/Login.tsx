@@ -6,7 +6,7 @@ import { setAccessToken } from '../accessToken';
 export const Login: React.FC<RouteComponentProps> = ({ history }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [login] = useLoginMutation()
+    const [login] = useLoginMutation({ errorPolicy: "all" })
     return (
         <form onSubmit={async e => {
             e.preventDefault()

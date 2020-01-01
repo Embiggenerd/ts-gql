@@ -6,16 +6,16 @@ interface Props {
 }
 
 export const Bye: React.FC<Props> = () => {
-    const { data, loading, error} = useByeQuery()
+    const { data, loading, error } = useByeQuery({ errorPolicy: "all" })
 
-    if(loading){
+    if (loading) {
         return <div>loading</div>
     }
-    if(error) {
+    if (error) {
         console.log(error)
         return <div>{error.message}</div>
     }
-    if(!data){
+    if (!data) {
         return <div>no data</div>
     }
     return (

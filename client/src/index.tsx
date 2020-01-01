@@ -42,9 +42,18 @@ const requestLink = new ApolloLink((operation, forward) =>
 );
 
 const client = new ApolloClient({
+    defaultOptions:
+    {
+        query: {
+            errorPolicy: "all"
+        },
+        mutate: {
+            errorPolicy: 'all',
+        },
+    },
     link: ApolloLink.from([
         new TokenRefreshLink({
-            accessTokenField:"accessToken",
+            accessTokenField: "accessToken",
             isTokenValidOrUndefined: () => {
                 const token = getAccessToken()
 
