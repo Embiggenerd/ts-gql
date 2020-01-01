@@ -5,6 +5,7 @@ import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Bye } from './pages/Bye';
 import { setAccessToken } from './accessToken';
+import { Header } from './pages/Header';
 
 export const Routes: React.FC = () => {
 
@@ -30,12 +31,7 @@ export const Routes: React.FC = () => {
 
     <BrowserRouter>
       <div>
-        <header>
-          <div><Link to="/login">Login</Link></div>
-          <div><Link to="/register">Register</Link></div>
-          <div><Link to="/bye">Bye</Link></div>
-          <div><Link to="/">Home</Link></div>
-        </header>
+        <Header/>
         <Switch>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
